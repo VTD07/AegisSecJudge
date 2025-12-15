@@ -1,39 +1,31 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
-bool ktra(long long k)
+typedef long long l2;
+const int nmax=1e6+9;
+const l2 mod=1209;
+l2 a,n;
+l2 mu(l2 a,l2 n)
 {
-    long long h=k,s=0;
-    while(h>0)
-    {
-        s+=h%10;
-        h/=10;
-    }
-    if(s==6)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    if(n==0) return 1;
+    l2 tam=mu(a,n/2);
+    tam=(tam*tam)%mod;
+    if(n%2!=0) tam=(tam*a)%mod;
+    return tam;
 }
-long long a,b,kq;
-
-int main()
+l2 cal(l2 a,l2 n)
 {
-    cin>>a>>b;
-    if(a%2!=0)
-    {
-        a++;
-    }
-    if(b%2!=0)
-    {
-        b++;
-    }
-    for(int i=a;i<=b;i+=2)
-    {
-        if(ktra(i)) kq+=i;
-    }
-    cout<<kq;
+    if(n==1) return a;
+    l2 tam=cal(a,n/2);
+    tam=(tam%mod*(1+mu(a,n/2))%mod)%mod;
+    if(n%2!=0) tam=(tam+mu(a,n))%mod;
+    return tam;
+}
+signed main ()
+{
+    // freopen("TONGCSNMOD.inp","r",stdin);
+    // freopen("TONGCSNMOD.out","w",stdout);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);cout.tie(NULL);
+    cin>>a>>n;
+    cout<<cal(a,n)+1;
 }

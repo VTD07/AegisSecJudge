@@ -1,9 +1,13 @@
 import os
+import stat
 import folder_checking as fc
 import clang as cl 
 import pythonlang as pl
 
 currfolder = os.getcwd()
+
+os.chmod(os.path.join(currfolder,"test_folder"), stat.S_IRWXU | stat.S_IRWXG | stat.S_IRWXO)
+
 paths = [
     "test_folder\\Accepted",
     "test_folder\\pending",
@@ -16,7 +20,7 @@ paths = [
     "processed\\TLE"
     ]
 
-for i in paths: 
+for i in paths:
     if not fc.check_folder_2(currfolder, i):
         print(f"{i} folder is missing")
         exit(0)
