@@ -18,6 +18,7 @@ def detect_RTE_TLE_AC(file_path):
             
             if(i<10):k=f"0{i}"
             else :k=f"{i}"
+            
             input_folder_path = os.path.join(test_folder,f"Test{k}")
             input_file_path=os.path.join(input_folder_path,f"TONGCSNMOD.inp")
             output_file_path=os.path.join(input_folder_path,f"TONGCSNMOD.out")
