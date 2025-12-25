@@ -1,11 +1,30 @@
-def merge_dict(d1, d2):
-    dict={}
-    for key in d1: 
-        dict[key]=d1[key]+d2.get(key,0)
-    for key in d2: 
-        if not key in dict: 
-            dict[key]=d2[key]
-    return dict
-        
-    
-print(merge_dict({'a': 3, 'b': 2, 'c': 1}, {'b': 3, 'c': 2, 'd': 1}))
+import sys
+
+##############
+sys.dont_write_bytecode = True
+##############
+
+sys.setrecursionlimit(10**7)
+
+mod = 1209
+
+def mu(a, n):
+    if n == 0:
+        return 1
+    tam = mu(a, n // 2)
+    tam = (tam * tam) % mod
+    if n % 2 != 0:
+        tam = (tam * a) % mod
+    return tam
+
+def cal(a, n):
+    if n == 1:
+        return a % mod
+    tam = cal(a, n // 2)
+    tam = (tam * (1 + mu(a, n // 2)) % mod) % mod
+    if n % 2 != 0:
+        tam = (tam + mu(a, n)) % mod
+    return tam
+
+a, n = map(int, input().split())
+print(cal(a, n) + 1)

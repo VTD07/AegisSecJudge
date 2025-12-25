@@ -2,49 +2,50 @@ import subprocess
 import os 
 
 currpath = os.getcwd()
-file_path = os.path.join(currpath, "pending\\C++\\Test.cpp")
-exe_path = os.path.join(currpath, "pending\\C++\\Test.exe")
-test_folder = os.path.join(currpath, "test_folder\\Accepted\\TONGCSNMOD")
+test_folder = os.path.join(currpath, "test_folder\\TONGCSNMOD")
 
+def compile_cpp(file_path):
+    exe_path = os.path.splitext(file_path)[0] + ".exe"
+    status = subprocess.run(["g++", file_path,"-o", exe_path],capture_output=True,text=True)
 
-def complie_error(file_path):
-    status = subprocess.run(["g++", file_path, "-o"], cwd=currpath, capture_output=True, text=True)
-    return status.returncode != 0
+    if status.returncode != 0:
+        print(f"Compilation error in {file_path}")
+        return None
+
+    return exe_path
 
 def detect_RTE_TLE_AC(file_path):
     try:
         
         for i in range(1,21):
             
-            if(i<10):k=f"0{i}"
-            else :k=f"{i}"
+            index=f"{i:02d}"
             
-            input_folder_path = os.path.join(test_folder,f"Test{k}")
+            input_folder_path = os.path.join(test_folder,f"Test{index}")
             input_file_path=os.path.join(input_folder_path,f"TONGCSNMOD.inp")
             output_file_path=os.path.join(input_folder_path,f"TONGCSNMOD.out")
             
             with open(input_file_path, 'r') as input_file, open(output_file_path, 'r') as output_file:
                 status = subprocess.run([file_path], input=input_file.read(), capture_output=True, text=True, timeout=1)
                 if status.returncode != 0:
-                    print(f"RTE on test case {k}")
+                    # print(f"RTE on test case {index}")
                     return "RTE"
                 else: 
                     if status.stdout.strip() != output_file.read().strip():
-                        print(f"WA on test case {k}")
+                        # print(f"WA on test case {index}")
                         return "WA"
 
     except subprocess.TimeoutExpired:
-        print(f"TLE on test case {k}")
+        # print(f"TLE on test case {index}")
         return "TLE"
     
     return "AC"
     
 def complie(file_path): 
-    if not complie_error(file_path):
+    exe_path = compile_cpp(file_path)
+    if exe_path is None:
         print(f"Error: Compilation failed for {file_path}")
-    else: 
+        exit(0)
+    else:
         result = detect_RTE_TLE_AC(exe_path)
-        if result:
-            print(f"Program resulted in: {result}")
-        else:
-            print("Program executed successfully without RTE or TLE.")
+        print(f"Program resulted in: {result}")
