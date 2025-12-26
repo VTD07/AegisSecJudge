@@ -6,8 +6,8 @@ db="db\\SQLite.db"
 currpath = os.getcwd()
 path_db = os.path.join(currpath, db)
 conn = sql.connect(path_db)
-condition = []
-test_counter = [0 for _ in (1,1000000)]
+condition = [0 for _ in range(1,1000000)]
+test_counter = [0 for _ in range(1,1000000)]
 
 cursor = conn.cursor()
 
@@ -18,7 +18,7 @@ for row in problem_condition:
     id = row[0]
     time_limit = row[1]//1000
     memory_limit = row[2]
-    condition[id].apped(time_limit)
+    condition[id]=time_limit
 
 cursor.execute('''SELECT input_data,output_data,problem_id FROM test_case ''')
 test_cases = cursor.fetchall()
