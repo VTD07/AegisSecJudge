@@ -2,10 +2,6 @@ import subprocess
 import sys
 import os 
 
-##############
-sys.dont_write_bytecode = True
-##############
-
 
 currpath = os.getcwd()
 test_folder = os.path.join(currpath, "test_folder\\TONGCSNMOD")

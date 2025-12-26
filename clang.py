@@ -1,11 +1,7 @@
 import subprocess
 import os 
 
-result = []
 currpath = os.getcwd()
-
-test_file = os.path.join(currpath, "pending\\cpp\\1_1_1.cpp")
-# test_folder = os.path.join(currpath ,"test_folder\\1")
 
 def compile_cpp(file_path):
     exe_path = os.path.splitext(file_path)[0] + ".exe"
@@ -16,9 +12,6 @@ def compile_cpp(file_path):
     return exe_path
 
 def detect_RTE_TLE_AC(file_path,test_folder,test_id,time_limit):
-    
-    result = []
-    
     try:
         
         for i in range(1,len(os.listdir(test_folder))+1):
@@ -32,19 +25,17 @@ def detect_RTE_TLE_AC(file_path,test_folder,test_id,time_limit):
             with open(input_file_path, 'r') as input_file, open(output_file_path, 'r') as output_file:
                 status = subprocess.run([file_path], input=input_file.read(), capture_output=True, text=True, timeout=time_limit)
                 if status.returncode != 0:
-                    result.append(("RTE",i))
-                    return result 
+                    return "RTE", i-1
                 else: 
                     if status.stdout.strip() != output_file.read().strip():
-                        result.append(("WA",i))
-                    else: result.append(("AC",i))
+                        # print(f"WA on test case {index}")
+                        return "WA" ,i-1
 
     except subprocess.TimeoutExpired:
         # print(f"TLE on test case {index}")
-        result.append(("TLE",i))
-            
-    return result 
+        return "TLE", i-1
     
+    return "AC", i
     
 def complie(file_path,test_name,time_limit): 
     exe_path = compile_cpp(file_path)
@@ -52,8 +43,5 @@ def complie(file_path,test_name,time_limit):
     if exe_path is None:
         return "CE", 0
     else:
-        status = detect_RTE_TLE_AC(exe_path,test_folder,test_name,time_limit)
-        for i in status: 
-            print(i)
-
-complie(test_file,1,1)
+        result, test_passed = detect_RTE_TLE_AC(exe_path,test_folder,test_name,time_limit)
+        return result, test_passed
