@@ -2,6 +2,8 @@ __pycache__/
 .venv/
 env/
 
+tempCodeRunnerFile.py
+
 # Compiled files
 *.exe
 *.out
