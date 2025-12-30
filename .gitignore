@@ -1,0 +1,12 @@
+__pycache__/
+.venv/
+env/
+
+# Compiled files
+*.exe
+*.out
+*.o
+*.pyc
+*.pyo
+*.pyd
+
