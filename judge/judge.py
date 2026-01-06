@@ -8,9 +8,11 @@ def return_result(id,user_id,problem_id,status,detailed,language,total_test,test
         print(i)
     
     print("-----------------------------------------------------------------")
+    
+    
 
 def process(currpath,id,user_id,problem_id,code,language,extension,compiler,time_limit):
-    file_path = os.path.join(currpath, f"pending\\cpp\\{id}_{problem_id}_{user_id}.{extension}")
+    file_path = os.path.join(currpath, "pending",language,f"{id}_{problem_id}_{user_id}.{extension}")
     with open(file_path, 'w', encoding="utf-8") as file:
         file.write(code)
             
@@ -20,7 +22,6 @@ def process(currpath,id,user_id,problem_id,code,language,extension,compiler,time
     
 
 def process_sumbission(submissions,currpath,condition):
-    
     
     for row in submissions:
         

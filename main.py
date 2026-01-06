@@ -5,7 +5,7 @@ from data.load_problem_condition import setup_condition
 from judge.judge import process_sumbission
 
 currpath = os.getcwd()
-db="db\\SQLite.db"
+db=os.path.join("db","SQLite.db")
 path_db = os.path.join(currpath, db)
 conn = sql.connect(path_db)
     

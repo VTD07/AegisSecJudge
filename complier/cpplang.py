@@ -2,7 +2,8 @@ import subprocess
 import os 
 
 currpath = os.getcwd()
-file_path = os.path.join(currpath, "pending\\cpp\\12_4_4.cpp")
+
+    
 
 def detect_CE(file_path):
     exe_path = os.path.splitext(file_path)[0] + ".exe"
@@ -33,8 +34,6 @@ def detect_RTE_TLE_AC(file_path,test_folder,test_id,time_limit):
                     RTE = True
                 else: 
                     if status.stdout.strip() != output_file.read().strip():
-                        # print(f"WA on test case {index}")
-                        # return "WA" ,i-1
                         WA = True
                         detailed.append(("WA",i))
                     else: 
@@ -42,8 +41,6 @@ def detect_RTE_TLE_AC(file_path,test_folder,test_id,time_limit):
                         passed_test+=1
 
             except subprocess.TimeoutExpired:
-                # print(f"TLE on test case {index}")
-                # return "TLE", i-1
                 TLE = True
                 detailed.append(("TLE",i))
     
