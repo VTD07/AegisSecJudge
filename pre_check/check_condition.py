@@ -1,11 +1,11 @@
-import pre_check.folder_checking as fc 
+import folder_checking as fc 
 import subprocess 
 import os 
 
 currpath = os.getcwd()
 
 ness_folder = [
-    "complier"
+    "complier",
     "test_folder", 
     "pending", 
     "db"
@@ -33,7 +33,7 @@ def check_complier():
 value_1, folder = check_folder()
 value_2, compiler = check_complier()
 
-if value_2 == False: 
+if value_1 == False: 
     print(f"check for {compiler}")
     
 elif value_2 == False: 

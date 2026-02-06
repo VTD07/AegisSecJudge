@@ -32,7 +32,10 @@ def process_sumbission(submissions,currpath,condition):
         code = row[4]
         time_limit = condition[problem_id]
         
-        if language == "cpp": 
-            process(currpath,id,user_id,problem_id,code,language,"cpp",cppl.compile_cpp,time_limit)
-        elif language == "python": 
-            process(currpath,id,user_id,problem_id,code,language,"py",pl.compile_python,time_limit)
+        match language: 
+            
+            case "cpp": 
+                process(currpath,id,user_id,problem_id,code,language,"cpp",cppl.compile_cpp,time_limit)
+
+            case "python":
+                process(currpath,id,user_id,problem_id,code,language,"py",pl.compile_python,time_limit)
