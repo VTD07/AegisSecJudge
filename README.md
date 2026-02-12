@@ -1,4 +1,4 @@
-p# AegisSecJudge
+# AegisSecJudge
 > ### A judge for OJ platforms
 
 ---
