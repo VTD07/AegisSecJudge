@@ -1,4 +1,4 @@
-# AegisSecJudge
+p# AegisSecJudge
 > ### A judge for OJ platforms
 
 ---
@@ -51,6 +51,11 @@
 ```bash
 git clone https://github.com/VTD07/AegisSecJudge
 ```
+### 2. Run check prerequisites program 
+```bash
+cd pre_check
+python check_condition.py
+```
 
 ### 2. Run the application
 ```bash
@@ -62,7 +67,7 @@ python main.py
 ```
 AegisSecJudge/
 │
-├── main.py                             #synthesis of Judger
+├── main.py                             #Synthesis of Judger
 │
 ├── complier/                           #Test cases feedback and verdicts
 │   ├── __init__.py                     
@@ -77,17 +82,17 @@ AegisSecJudge/
 ├── judge/                              #Main judger
 │   ├── __init__.py
 │   ├── judge.py                        #Results of each submissions 
-│   └── test_comparison.py              #Test comparison logic for each type
+│   └── test_comparison.py              #Test comparison logic for each type (currently developing)
 │
 ├── pre_check/                          #Check for prerequisites
 │   ├── __init__.py
-│   ├── check_condition.py              #Check for folder, compiler
-│   └── folder_checking.py              #Check for folder and permissions
+│   ├── check_condition.py              #Check for folder, compiler and permissions.
+│   └── folder_checking.py              #Check for folder and file exists
 │
-├── pending/                            #Template file for judge
+├── pending/                            #Template source file for judging
 │   └── cpp/
 │
-├── db/                                 #Database (currently developing)
+├── db/                                 #Database setup (currently developing)
 │
 └── test_folder/                        #Test of each problems
     └── <problem_id>/
