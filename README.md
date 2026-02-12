@@ -14,7 +14,7 @@
 
 ## Introduction 
 
-**AegisSecJudge** is a judger which is developed best for perfomance and  security for linux servers. Fully developed by VTD12 - student from HUST. 
+**AegisSecJudge** is a judger which is developed best for perfomance and  security for linux servers. Aegis in ancient Greece stands for shields, symbols of DevSecOps . Fully developed by VTD12 - student from HUST. 
 
 ### Core Features
 
